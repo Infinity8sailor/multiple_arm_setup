@@ -1,0 +1,35 @@
+<launch>
+<!-- UR5 Arm xacro  -->
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find multiple_ur_description)/urdf/multiple_ur5_robotiq.urdf.xacro'"/>
+
+
+<!--   ur5 world -->
+	<include file="$(find multiple_ur_description)/launch/multiarm_gazebo.launch" />
+    <!-- <include file="$(find ebot_gazebo)/launch/empty_world.launch" /> -->
+
+
+	<arg name="x" default="0.5"/>
+	<arg name="y" default="0.0"/>
+	<arg name="z" default="0.5"/>
+	<arg name="r" default="0"/>
+	<arg name="p" default="0"/>
+	<arg name="ya" default="0"/>
+    <arg name="x2" default="0.5"/>
+	<arg name="y2" default="-0.5"/>
+	<arg name="z2" default="0.5"/>
+	<arg name="r2" default="0"/>
+	<arg name="p2" default="0"/>
+	<arg name="ya2" default="0"/>	
+
+<!-- Spawn the ur5 robot model -->
+	<node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" 
+	    args="-urdf -param robot_description -model multiple_arm_UR5 -x $(arg x) -y $(arg y) -z $(arg z) -R $(arg r) -P $(arg p) -Y $(arg ya)" />
+
+    <!-- <node name="mybot_spawn2" pkg="gazebo_ros" type="spawn_model" output="screen" 
+	    args="-urdf -param robot_description -model UR5_2 -x $(arg x2) -y $(arg y2) -z $(arg z2) -R $(arg r2) -P $(arg p2) -Y $(arg ya2)" /> -->
+
+		
+<!-- include the moveit launch file and node for pick and place using perception-->
+	
+
+</launch>

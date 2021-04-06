@@ -1,0 +1,80 @@
+controller_list:
+  - name: fake_ur5_1_controller
+    joints:
+      - ur5_1_shoulder_pan_joint
+      - ur5_1_shoulder_lift_joint
+      - ur5_1_elbow_joint
+      - ur5_1_wrist_1_joint
+      - ur5_1_wrist_2_joint
+      - ur5_1_wrist_3_joint
+  - name: fake_ur5_2_controller
+    joints:
+      - ur5_2_shoulder_pan_joint
+      - ur5_2_shoulder_lift_joint
+      - ur5_2_elbow_joint
+      - ur5_2_wrist_1_joint
+      - ur5_2_wrist_2_joint
+      - ur5_2_wrist_3_joint
+  - name: fake_ur5_1_gripper_controller
+    joints:
+      - ur5_1_gripper_finger1_joint
+  - name: fake_ur5_2_gripper_controller
+    joints:
+      - ur5_2_gripper_finger1_joint
+  - name: fake_ur5_3_controller
+    joints:
+      - ur5_3_shoulder_pan_joint
+      - ur5_3_shoulder_lift_joint
+      - ur5_3_elbow_joint
+      - ur5_3_wrist_1_joint
+      - ur5_3_wrist_2_joint
+      - ur5_3_wrist_3_joint
+  - name: fake_ur5_3_gripper_controller
+    joints:
+      - ur5_3_gripper_finger1_joint
+  - name: fake_dual_ur_controller
+    joints:
+      - ur5_1_shoulder_pan_joint
+      - ur5_1_shoulder_lift_joint
+      - ur5_1_elbow_joint
+      - ur5_1_wrist_1_joint
+      - ur5_1_wrist_2_joint
+      - ur5_1_wrist_3_joint
+      - ur5_1_gripper_finger1_joint
+      - ur5_2_shoulder_pan_joint
+      - ur5_2_shoulder_lift_joint
+      - ur5_2_elbow_joint
+      - ur5_2_wrist_1_joint
+      - ur5_2_wrist_2_joint
+      - ur5_2_wrist_3_joint
+      - ur5_2_gripper_finger1_joint
+  - name: fake_multiple_ur_controller
+    joints:
+      - ur5_1_shoulder_pan_joint
+      - ur5_1_shoulder_lift_joint
+      - ur5_1_elbow_joint
+      - ur5_1_wrist_1_joint
+      - ur5_1_wrist_2_joint
+      - ur5_1_wrist_3_joint
+      - ur5_1_gripper_finger1_joint
+      - ur5_2_shoulder_pan_joint
+      - ur5_2_shoulder_lift_joint
+      - ur5_2_elbow_joint
+      - ur5_2_wrist_1_joint
+      - ur5_2_wrist_2_joint
+      - ur5_2_wrist_3_joint
+      - ur5_2_gripper_finger1_joint
+      - ur5_3_shoulder_pan_joint
+      - ur5_3_shoulder_lift_joint
+      - ur5_3_elbow_joint
+      - ur5_3_wrist_1_joint
+      - ur5_3_wrist_2_joint
+      - ur5_3_wrist_3_joint
+      - ur5_3_gripper_finger1_joint
+initial:  # Define initial robot poses.
+  - group: ur5_1
+    pose: arm_1_up
+  - group: ur5_2
+    pose: arm_2_up
+  - group: multiple_ur
+    pose: all_up
