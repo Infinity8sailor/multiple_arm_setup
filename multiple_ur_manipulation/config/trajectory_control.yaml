@@ -1,0 +1,63 @@
+ur5_1_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+     - ur5_1_elbow_joint 
+     - ur5_1_shoulder_lift_joint 
+     - ur5_1_shoulder_pan_joint 
+     - ur5_1_wrist_1_joint 
+     - ur5_1_wrist_2_joint 
+     - ur5_1_wrist_3_joint 
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  25
+  action_monitor_rate: 10
+  
+ur5_2_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+     - ur5_2_elbow_joint 
+     - ur5_2_shoulder_lift_joint 
+     - ur5_2_shoulder_pan_joint 
+     - ur5_2_wrist_1_joint 
+     - ur5_2_wrist_2_joint 
+     - ur5_2_wrist_3_joint 
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  25
+  action_monitor_rate: 10
+
+ur5_3_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+     - ur5_3_elbow_joint 
+     - ur5_3_shoulder_lift_joint 
+     - ur5_3_shoulder_pan_joint 
+     - ur5_3_wrist_1_joint 
+     - ur5_3_wrist_2_joint 
+     - ur5_3_wrist_3_joint 
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  25
+  action_monitor_rate: 10
+  
+ur5_1_gripper_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+     - ur5_1_gripper_finger1_joint
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  25
+  action_monitor_rate: 10
+
+ur5_2_gripper_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+     - ur5_2_gripper_finger1_joint
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  25
+  action_monitor_rate: 10
+
+ur5_3_gripper_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+     - ur5_3_gripper_finger1_joint
+  stop_trajectory_duration: 0.5
+  state_publish_rate:  25
+  action_monitor_rate: 10
+

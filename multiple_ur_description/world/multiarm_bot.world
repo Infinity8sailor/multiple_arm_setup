@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+
+<sdf version="1.5">
+	<world name="default">
+		<!-- A global light source -->
+		<!-- disable Shadows -->
+		<scene>
+           <shadows>0</shadows>
+        </scene>
+		<include>
+			<uri>model://sun</uri>
+		</include>
+
+		<!-- A ground plane -->
+		<include>
+			<uri>model://ground_plane</uri>
+		</include>
+
+        <!-- Custom model -->
+        <include>
+		    <pose frame=''>1.38 0.3 1.2 0 0 0.934</pose> 
+            <uri>model://coke_can</uri>
+        </include>
+		<include>
+		    <pose frame=''>1.1 -0.3 1.2 0 0 0.934</pose> 
+            <uri>model://coke_can</uri>
+        </include>
+		<include>
+		    <pose frame=''>1.6 -0.3 1.2 0 0 0.934</pose> 
+            <uri>model://coke_can</uri>
+        </include>
+		<include>
+            <pose frame=''>0.5 0.0 0.3 0 0 0</pose> 
+            <uri>model://dropbox</uri>
+            <name>DropBox</name>
+        </include>
+
+		<include>
+           <pose frame=''>1.38 0 0 0 0 1.56</pose> 
+           <uri>model://table</uri>
+        </include>
+        
+	</world>
+</sdf>

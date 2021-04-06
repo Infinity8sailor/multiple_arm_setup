@@ -1,0 +1,1057 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="multiple_ur5_robotiq">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="ur5_1">
+        <joint name="ur5_1_shoulder_pan_joint" />
+        <joint name="ur5_1_shoulder_lift_joint" />
+        <joint name="ur5_1_elbow_joint" />
+        <joint name="ur5_1_wrist_1_joint" />
+        <joint name="ur5_1_wrist_2_joint" />
+        <joint name="ur5_1_wrist_3_joint" />
+        <joint name="ur5_1_gripper_base_joint" />
+        <chain base_link="ur5_1_base_link" tip_link="ur5_1_gripper_finger1_finger_tip_link" />
+    </group>
+    <group name="ur5_2">
+        <joint name="ur5_2_shoulder_pan_joint" />
+        <joint name="ur5_2_shoulder_lift_joint" />
+        <joint name="ur5_2_elbow_joint" />
+        <joint name="ur5_2_wrist_1_joint" />
+        <joint name="ur5_2_wrist_2_joint" />
+        <joint name="ur5_2_wrist_3_joint" />
+        <joint name="ur5_2_gripper_base_joint" />
+        <chain base_link="ur5_2_base_link" tip_link="ur5_2_gripper_finger1_finger_tip_link" />
+    </group>
+    <group name="ur5_1_gripper">
+        <joint name="ur5_1_gripper_finger1_joint" />
+    </group>
+    <group name="ur5_2_gripper">
+        <joint name="ur5_2_gripper_finger1_joint" />
+    </group>
+    <group name="ur5_3">
+        <joint name="ur5_3_shoulder_pan_joint" />
+        <joint name="ur5_3_shoulder_lift_joint" />
+        <joint name="ur5_3_elbow_joint" />
+        <joint name="ur5_3_wrist_1_joint" />
+        <joint name="ur5_3_wrist_2_joint" />
+        <joint name="ur5_3_wrist_3_joint" />
+        <joint name="ur5_3_gripper_base_joint" />
+        <chain base_link="ur5_3_base_link" tip_link="ur5_3_gripper_finger1_finger_tip_link" />
+    </group>
+    <group name="ur5_3_gripper">
+        <joint name="ur5_3_gripper_finger1_joint" />
+    </group>
+    <group name="dual_ur">
+        <group name="ur5_1" />
+        <group name="ur5_2" />
+        <group name="ur5_1_gripper" />
+        <group name="ur5_2_gripper" />
+    </group>
+    <group name="multiple_ur">
+        <group name="ur5_1" />
+        <group name="ur5_2" />
+        <group name="ur5_1_gripper" />
+        <group name="ur5_2_gripper" />
+        <group name="ur5_3" />
+        <group name="ur5_3_gripper" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="arm_1_up" group="ur5_1">
+        <joint name="ur5_1_elbow_joint" value="-0.0521" />
+        <joint name="ur5_1_shoulder_lift_joint" value="-1.5621" />
+        <joint name="ur5_1_shoulder_pan_joint" value="0" />
+        <joint name="ur5_1_wrist_1_joint" value="-0.1041" />
+        <joint name="ur5_1_wrist_2_joint" value="1.5621" />
+        <joint name="ur5_1_wrist_3_joint" value="0" />
+    </group_state>
+    <group_state name="arm_2_up" group="ur5_2">
+        <joint name="ur5_2_elbow_joint" value="0.0174" />
+        <joint name="ur5_2_shoulder_lift_joint" value="-1.5621" />
+        <joint name="ur5_2_shoulder_pan_joint" value="0" />
+        <joint name="ur5_2_wrist_1_joint" value="-1.5621" />
+        <joint name="ur5_2_wrist_2_joint" value="-1.4927" />
+        <joint name="ur5_2_wrist_3_joint" value="0" />
+    </group_state>
+    <group_state name="all_up" group="multiple_ur">
+        <joint name="ur5_1_elbow_joint" value="-0.0521" />
+        <joint name="ur5_1_gripper_finger1_finger_tip_joint" value="0" />
+        <joint name="ur5_1_gripper_finger1_inner_knuckle_joint" value="0" />
+        <joint name="ur5_1_gripper_finger1_joint" value="0" />
+        <joint name="ur5_1_shoulder_lift_joint" value="-1.5621" />
+        <joint name="ur5_1_shoulder_pan_joint" value="0" />
+        <joint name="ur5_1_wrist_1_joint" value="-0.1041" />
+        <joint name="ur5_1_wrist_2_joint" value="1.5621" />
+        <joint name="ur5_1_wrist_3_joint" value="0" />
+        <joint name="ur5_2_elbow_joint" value="0.0174" />
+        <joint name="ur5_2_gripper_finger1_finger_tip_joint" value="0" />
+        <joint name="ur5_2_gripper_finger1_inner_knuckle_joint" value="0" />
+        <joint name="ur5_2_gripper_finger1_joint" value="0" />
+        <joint name="ur5_2_shoulder_lift_joint" value="-1.5621" />
+        <joint name="ur5_2_shoulder_pan_joint" value="0" />
+        <joint name="ur5_2_wrist_1_joint" value="-1.5621" />
+        <joint name="ur5_2_wrist_2_joint" value="-1.4927" />
+        <joint name="ur5_2_wrist_3_joint" value="0" />
+        <joint name="ur5_3_elbow_joint" value="-0.0521" />
+        <joint name="ur5_3_gripper_finger1_finger_tip_joint" value="0" />
+        <joint name="ur5_3_gripper_finger1_inner_knuckle_joint" value="0" />
+        <joint name="ur5_3_gripper_finger1_joint" value="0" />
+        <joint name="ur5_3_shoulder_lift_joint" value="-1.4927" />
+        <joint name="ur5_3_shoulder_pan_joint" value="0.1736" />
+        <joint name="ur5_3_wrist_1_joint" value="-1.4927" />
+        <joint name="ur5_3_wrist_2_joint" value="-1.4232" />
+        <joint name="ur5_3_wrist_3_joint" value="0.1041" />
+    </group_state>
+    <group_state name="all_zero" group="multiple_ur">
+        <joint name="ur5_1_elbow_joint" value="1.3364" />
+        <joint name="ur5_1_gripper_finger1_finger_tip_joint" value="0" />
+        <joint name="ur5_1_gripper_finger1_inner_knuckle_joint" value="0" />
+        <joint name="ur5_1_gripper_finger1_joint" value="0" />
+        <joint name="ur5_1_shoulder_lift_joint" value="-2.3952" />
+        <joint name="ur5_1_shoulder_pan_joint" value="0" />
+        <joint name="ur5_1_wrist_1_joint" value="1.4232" />
+        <joint name="ur5_1_wrist_2_joint" value="1.5621" />
+        <joint name="ur5_1_wrist_3_joint" value="0" />
+        <joint name="ur5_2_elbow_joint" value="1.3712" />
+        <joint name="ur5_2_gripper_finger1_finger_tip_joint" value="0" />
+        <joint name="ur5_2_gripper_finger1_inner_knuckle_joint" value="0" />
+        <joint name="ur5_2_gripper_finger1_joint" value="0" />
+        <joint name="ur5_2_shoulder_lift_joint" value="-2.3952" />
+        <joint name="ur5_2_shoulder_pan_joint" value="-0.0347" />
+        <joint name="ur5_2_wrist_1_joint" value="1.4927" />
+        <joint name="ur5_2_wrist_2_joint" value="1.5621" />
+        <joint name="ur5_2_wrist_3_joint" value="1.6315" />
+        <joint name="ur5_3_elbow_joint" value="1.6141" />
+        <joint name="ur5_3_gripper_finger1_finger_tip_joint" value="0" />
+        <joint name="ur5_3_gripper_finger1_inner_knuckle_joint" value="0" />
+        <joint name="ur5_3_gripper_finger1_joint" value="0" />
+        <joint name="ur5_3_shoulder_lift_joint" value="-2.6035" />
+        <joint name="ur5_3_shoulder_pan_joint" value="0.1736" />
+        <joint name="ur5_3_wrist_1_joint" value="1.3538" />
+        <joint name="ur5_3_wrist_2_joint" value="1.7009" />
+        <joint name="ur5_3_wrist_3_joint" value="0.0347" />
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="end_eff_1" parent_link="ur5_1_gripper_base_link" group="ur5_1_gripper" parent_group="ur5_1" />
+    <end_effector name="end_eff_2" parent_link="ur5_2_gripper_base_link" group="ur5_2_gripper" parent_group="ur5_2" />
+    <end_effector name="end_eff_3" parent_link="ur5_3_gripper_base_link" group="ur5_3_gripper" parent_group="ur5_3" />
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="world_joint_virtual" type="fixed" parent_frame="world" child_link="world" />
+    <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
+    <passive_joint name="ur5_1_gripper_finger1_inner_knuckle_joint" />
+    <passive_joint name="ur5_1_gripper_finger1_finger_tip_joint" />
+    <passive_joint name="ur5_1_gripper_finger2_inner_knuckle_joint" />
+    <passive_joint name="ur5_1_gripper_finger2_finger_tip_joint" />
+    <passive_joint name="ur5_1_gripper_finger2_joint" />
+    <passive_joint name="ur5_2_gripper_finger1_inner_knuckle_joint" />
+    <passive_joint name="ur5_2_gripper_finger1_finger_tip_joint" />
+    <passive_joint name="ur5_2_gripper_finger2_inner_knuckle_joint" />
+    <passive_joint name="ur5_2_gripper_finger2_finger_tip_joint" />
+    <passive_joint name="ur5_2_gripper_finger2_joint" />
+    <passive_joint name="ur5_3_gripper_finger2_joint" />
+    <passive_joint name="ur5_3_gripper_finger2_finger_tip_joint" />
+    <passive_joint name="ur5_3_gripper_finger2_inner_knuckle_joint" />
+    <passive_joint name="ur5_3_gripper_finger1_finger_tip_joint" />
+    <passive_joint name="ur5_3_gripper_finger1_inner_knuckle_joint" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_1_shoulder_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_2_base_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_2_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_2_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_2_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_2_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_base_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_base_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_1_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_1_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_1_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_1_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_1_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_1_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_1_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_1_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_1_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_1_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_1_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_1_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_2_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_2_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_2_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_2_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_2_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_2_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_ee_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_1_upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_1_wrist_1_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_forearm_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_1_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_1_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_1_gripper_finger1_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_1_gripper_finger1_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_1_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_1_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_1_gripper_finger2_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_1_gripper_finger2_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_1_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_1_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_1_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_base_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_1_gripper_finger1_finger_tip_link" reason="Default" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_1_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_1_gripper_finger1_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_1_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_1_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_1_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_1_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_1_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_1_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_1_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_2_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_2_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_1_gripper_finger1_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_1_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_1_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_1_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_1_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_1_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_1_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_1_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_2_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_2_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_2_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_2_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_finger_tip_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_1_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_1_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_1_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_1_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_1_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_1_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_1_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_1_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_2_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_2_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_2_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_2_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_2_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_inner_knuckle_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_1_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_1_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_1_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_1_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_1_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_1_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_1_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_2_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_2_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_2_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_2_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger1_knuckle_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_1_gripper_finger2_finger_tip_link" reason="Default" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_1_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_1_gripper_finger2_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_1_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_1_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_1_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_2_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_2_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_2_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_2_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_1_gripper_finger2_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_1_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_1_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_1_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_1_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_2_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_2_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_2_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_2_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_2_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_2_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_finger_tip_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_1_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_1_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_1_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_1_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_2_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_2_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_2_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_inner_knuckle_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_1_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_1_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_1_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_gripper_finger2_knuckle_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_1_upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_2_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_2_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_2_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_shoulder_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_2_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_2_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_upper_arm_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_1_wrist_2_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_1_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_1_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_1_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_2_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_2_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_1_wrist_3_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_2_shoulder_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_base_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_base_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_2_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_2_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_2_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_2_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_2_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_2_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_2_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_ee_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_2_upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_2_wrist_1_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_forearm_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_2_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_2_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_2_gripper_finger1_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_2_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_2_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_2_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_base_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_2_gripper_finger1_finger_tip_link" reason="Default" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_2_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_2_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_2_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_2_gripper_finger1_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_2_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_finger_tip_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_2_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_2_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_2_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_inner_knuckle_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_2_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_2_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_2_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger1_knuckle_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_2_gripper_finger2_finger_tip_link" reason="Default" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_2_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_2_gripper_finger2_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_2_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_finger_tip_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_2_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_2_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_inner_knuckle_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_2_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_2_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_gripper_finger2_knuckle_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_2_upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_shoulder_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_upper_arm_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_upper_arm_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_upper_arm_link" link2="ur5_3_forearm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_upper_arm_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_upper_arm_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_upper_arm_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_upper_arm_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_upper_arm_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_upper_arm_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_upper_arm_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_upper_arm_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_2_wrist_2_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_2_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_upper_arm_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_1_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_2_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_2_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_ee_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_shoulder_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_2_wrist_3_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_3_base_link" link2="ur5_3_shoulder_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_ee_link" link2="ur5_3_gripper_base_link" reason="Never" />
+    <disable_collisions link1="ur5_3_ee_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_3_ee_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_3_ee_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_ee_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_ee_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_3_ee_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_3_ee_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_ee_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_ee_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_3_ee_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_3_ee_link" link2="ur5_3_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_forearm_link" link2="ur5_3_upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_forearm_link" link2="ur5_3_wrist_1_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_gripper_base_link" link2="ur5_3_gripper_finger1_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_base_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_base_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_gripper_base_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_gripper_base_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_base_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_base_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_gripper_base_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_gripper_base_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_base_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_base_link" link2="ur5_3_wrist_3_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_link" link2="ur5_3_gripper_finger1_finger_tip_link" reason="Default" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger1_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_tip_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_tip_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_tip_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_finger_tip_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger1_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_inner_knuckle_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_inner_knuckle_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_inner_knuckle_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_inner_knuckle_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger2_finger_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_knuckle_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_knuckle_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_knuckle_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger1_knuckle_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_finger_link" link2="ur5_3_gripper_finger2_finger_tip_link" reason="Default" />
+    <disable_collisions link1="ur5_3_gripper_finger2_finger_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_finger_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_gripper_finger2_finger_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_finger_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_finger_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger2_inner_knuckle_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_gripper_finger2_finger_tip_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_finger_tip_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_finger_tip_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_finger_tip_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_inner_knuckle_link" link2="ur5_3_gripper_finger2_knuckle_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_inner_knuckle_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_inner_knuckle_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_inner_knuckle_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_knuckle_link" link2="ur5_3_wrist_1_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_knuckle_link" link2="ur5_3_wrist_2_link" reason="Never" />
+    <disable_collisions link1="ur5_3_gripper_finger2_knuckle_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_3_shoulder_link" link2="ur5_3_upper_arm_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_wrist_1_link" link2="ur5_3_wrist_2_link" reason="Adjacent" />
+    <disable_collisions link1="ur5_3_wrist_1_link" link2="ur5_3_wrist_3_link" reason="Never" />
+    <disable_collisions link1="ur5_3_wrist_2_link" link2="ur5_3_wrist_3_link" reason="Adjacent" />
+</robot>

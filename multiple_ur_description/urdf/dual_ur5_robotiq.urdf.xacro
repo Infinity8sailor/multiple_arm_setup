@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dual_ur5_robotiq">
+
+  // BEGIN_TUTORIAL
+  //
+  // Include urdf.xacro from respective description packages of arms
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
+  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+  <xacro:include filename="$(find robotiq_85_description)/urdf/robotiq_85_gripper.urdf.xacro" />
+
+  // Specify Proper Prefix names for understanding of different arms.
+  <xacro:ur5_robot prefix="ur5_1_" joint_limited="false" />
+  <xacro:ur5_robot prefix="ur5_2_" joint_limited="false" />
+
+  // Add Base for mounting multiple arms. 
+  <!-- box shaped table as base for the 2 or more arms -->
+  <!-- <link name="base">
+    <visual>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="1 2 1" />
+      </geometry>
+      <material name="White">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="1 2 1" />
+      </geometry>
+    </collision>
+  </link> -->
+
+  // Add Proper links and Joints to World Frame and multiple arms.
+
+  <link name="world" />
+
+  <joint name="world_joint_1" type="fixed">
+    <parent link="world" />
+    <child link = "ur5_1_base_link" />
+    <origin xyz="0 0.4 0.7" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <xacro:robotiq_85_gripper prefix="ur5_1_" parent="ur5_1_wrist_3_link" >
+    <origin xyz="0 0.1 0" rpy="0 0 ${pi/2}"/>
+  </xacro:robotiq_85_gripper>
+ 
+  <joint name="world_joint_2" type="fixed">
+    <parent link="world" />
+    <child link = "ur5_2_base_link" />
+    <origin xyz="0 -0.4 0.7" rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <xacro:robotiq_85_gripper prefix="ur5_2_" parent="ur5_2_wrist_3_link" >
+    <origin xyz="0 0.1 0" rpy="0 0 ${pi/2}"/>
+  </xacro:robotiq_85_gripper>
+
+  // END_TUTORIAL
+
+</robot>

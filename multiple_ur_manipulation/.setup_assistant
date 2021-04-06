@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: multiple_ur_description
+    relative_path: urdf/multiple_ur5_robotiq.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/multiple_ur5_robotiq.srdf
+  CONFIG:
+    author_name: vaibhav Dasharathe
+    author_email: vinfinitysailor@gmail.com
+    generated_timestamp: 1617701218
