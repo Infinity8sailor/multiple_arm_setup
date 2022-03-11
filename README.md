@@ -16,5 +16,5 @@ In the second shell, here Start Bring Up file for manipulation
 In the third shell, Run the cpp Script
 
 ```bash
-  roslaunch multiple_arms_scripts multiple_arm_move
+  rosrun multiple_arms_scripts multiple_arm_move
   ```
